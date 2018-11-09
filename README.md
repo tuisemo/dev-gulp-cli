@@ -11,12 +11,12 @@
 + gulp-open (打开指定应用+网址)
 
 ### 安装
-```
+```javascript
 npm install
 ```
 
 ### 运行
-```
+```javascript
 npm run dev
 ```
 
@@ -25,7 +25,8 @@ npm run dev
 
 脚手架中使用`gulp-connect`和`http-proxy-middleware`实现本地服务及接口代理。
 另外，由于`gulp-connect`没有发现有支持默认打开文件的api，于是这里补充了`gulp-open`来实现，这样当我们运行脚手架服务时，即可自动打开浏览器并指定路由地址。
-```
+
+```javascript
 gulp.task('server', function () {
     var options = {
         app: 'chrome',
@@ -55,7 +56,8 @@ gulp.task('server', function () {
 
 `concurrently`模块帮助我们对`npm scripts`进行了拓展，使得多个执行项可以整合为一条命令语句执行。
 安装`concurrently`模块后，修改package.json的 scripts:
-```
+
+```javascript
 "command1":"hahaha",
 "command2":"xixixi",
 "com":"concurrently \"npm run command1\" \"npm run command2\""
