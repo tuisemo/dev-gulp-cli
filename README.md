@@ -63,4 +63,7 @@ gulp.task('server', function () {
 "com":"concurrently \"npm run command1\" \"npm run command2\""
 ```
 
+之后我们执行`npm run com`就会分别执行`npm run command1`和`npm run command2`
+
+
 `json-sever`是一个可搭建本地模拟数据接口服务的模块，遵循 REST API 规则。具体使用方法可访问[json-server](https://www.npmjs.com/package/json-server)

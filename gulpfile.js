@@ -6,12 +6,18 @@ var autoprefixer = require('gulp-autoprefixer');
 var cssmin = require('gulp-clean-css');
 var base64 = require('gulp-base64');
 var imagemin = require('gulp-imagemin');
+var fileinclude = require('gulp-file-include');
 var connect = require("gulp-connect");
 var gulpPlumber = require('gulp-plumber');
 var open = require('gulp-open');
 var proxy = require('http-proxy-middleware');
 // var browserSync = require('browser-sync').create();
 // var reload = browserSync.reload;
+
+function handlerErroe(error){
+    console.error(error.toString())
+    this.emit('end');
+}
 
 gulp.task('jshint', function () {
     return gulp.src(['src/js/*.js'])
@@ -30,7 +36,9 @@ gulp.task('less', function () {
     return gulp.src(['src/css/*.less'])
         .pipe(gulpPlumber())
         .pipe(less())
+        .on('error',handlerErroe)
         .pipe(autoprefixer())
+        .on('error',handlerErroe)
         .pipe(gulp.dest('./src/css'))
         .pipe(connect.reload());
 });
@@ -39,11 +47,13 @@ gulp.task('cssmin', ['less'], function () {
     gulp.src('src/css/*.css')
         .pipe(gulpPlumber())
         .pipe(cssmin())
+        .on('error',handlerErroe)
         .pipe(base64({
             extensions: ['jpg', 'png', 'jpge'],
             maxImageSize: 1000 * 1024, // bytes 
             debug: true
         }))
+        .on('error',handlerErroe)
         .pipe(gulp.dest('dist/css'))
         .pipe(connect.reload());
 });
@@ -52,18 +62,40 @@ gulp.task('imagemin', function () {
     gulp.src('src/images/*.*')
         .pipe(gulpPlumber())
         .pipe(imagemin())
+        .on('error',handlerErroe)
         .pipe(gulp.dest('./dist/images'))
         .pipe(connect.reload());
 });
 
 gulp.task('copy', function () {
     gulp.src('src/*.html')
+        .pipe(fileinclude({
+            prefix: '<!--common@',
+            suffix: '-->',
+            basepath: '@file',
+            indent: true
+        }))
+        .on('error',handlerErroe)
+        .pipe(gulp.dest('./dist'))
+        .pipe(connect.reload());
+});
+
+gulp.task('fileinclude', function () {
+    gulp.src('src/*.html')
+        .pipe(fileinclude({
+            prefix: '<!--common@',
+            suffix: '-->',
+            basepath: '@file',
+            indent: true
+        }))
+        .on('error',handlerErroe)
         .pipe(gulp.dest('./dist'))
         .pipe(connect.reload());
 });
 
 gulp.task('watch', function () {
-    gulp.watch('src/css/*.less', ['cssmin']);
+    gulp.watch('src/css/*.less', ['less']);
+    gulp.watch('src/css/*.css', ['cssmin']);
     gulp.watch('src/js/*.js', ['jsmin']);
     gulp.watch('src/*.*', ['copy']);
     gulp.watch('src/images/*.*', ['imagemin']);

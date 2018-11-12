@@ -6,29 +6,158 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
-    <script src="./js/ajax.js"></script>
+    <link rel="stylesheet" href="css/AI_Date.css">
+    <!--common@include('./include/static.html')-->
+    <script src="./js/AI_Date.js"></script>
 </head>
 
 <body>
-    <input id="input" type="text">
+    <div id="wrapper">
+        <!--common@include('./include/nav.html')-->
+        <!--common@include('./include/sidebar.html')-->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="rows">
+                    <div class="white-box">
+                        <ul class="nav customtab nav-tabs">
+                            <li class="active"><a href="#tab1" data-toggle="tab">专车</a></li>
+                            <li><a href="#tab2" data-toggle="tab">快车</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade active in" id="tab1">
+                                <div class="form-horizontal form-line m-b-10">
+                                    <div class="form-group">
+                                        <label class="control-label">城市：</label>
+                                        <div class="input-group">
+                                            <select></select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">车牌号：</label>
+                                        <div class="input-group">
+                                            <input class="form-control" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">司机姓名：</label>
+                                        <div class="input-group">
+                                            <input class="form-control" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">司机联系方式：</label>
+                                        <div class="input-group">
+                                            <input class="form-control" type="text">
+                                        </div>
+                                    </div><br />
+                                    <div class="form-group">
+                                        <label class="control-label">城市：</label>
+                                        <div class="input-group">
+                                            <div class="radio radio-info">
+                                                <input type="radio" name="set" id="starSet1" checked="">
+                                                <label for="starSet1"> 上门接（乘客输入起点）</label>
+                                            </div>
+                                            <div class="radio radio-info">
+                                                <input type="radio" name="set" id="starSet2">
+                                                <label for="starSet2">固定上车点（最多5个）</label>
+                                            </div>
+                                        </div>
+                                    </div><br/>
+                                    <div class="form-group">
+                                        <label class="control-label">城市：</label>
+                                        <div class="input-group">
+                                            <div class="checkbox checkbox-info">
+                                                <input id="all" type="checkbox" name="allRange" data-rule-required="true"
+                                                    data-msg-required="请选择业务范围" aria-required="true">
+                                                <label for="all"> 全部 </label>
+                                            </div>
+                                            <div class="checkbox checkbox-info">
+                                                <input id="range1" type="checkbox" name="range">
+                                                <label for="range1"> 出租 </label>
+                                            </div>
+                                            <div class="checkbox checkbox-info">
+                                                <input id="range2" type="checkbox" name="range">
+                                                <label for="range2"> 专车 </label>
+                                            </div>
+                                            <div class="checkbox checkbox-info">
+                                                <input id="range3" type="checkbox" name="range">
+                                                <label for="range3"> 跨城拼车 </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <ul class="nav customtab nav-tabs">
+                                    <li class="active"><a href="#tab1_all" data-toggle="tab">全部</a></li>
+                                    <li><a href="#tab1_pending" data-toggle="tab">待排班</a></li>
+                                    <li><a href="#tab1_dispatch" data-toggle="tab">已排班</a></li>
+                                </ul>
+
+                                <div class="tab-content">
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab2">
+                                <div class="form-horizontal form-line m-b-10">
+                                    <div class="form-group">
+                                        <label class="control-label">城市：</label>
+                                        <div class="input-group">
+                                            <select></select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">车牌号：</label>
+                                        <div class="input-group">
+                                            <select></select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">司机姓名：</label>
+                                        <div class="input-group">
+                                            <select></select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">司机联系方式：</label>
+                                        <div class="input-group">
+                                            <select></select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <ul class="nav customtab nav-tabs">
+                                    <li class="active"><a href="#tab2_all" data-toggle="tab">全部</a></li>
+                                    <li><a href="#tab2_pending" data-toggle="tab">待排班</a></li>
+                                    <li><a href="#tab2_dispatch" data-toggle="tab">已排班</a></li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div class="tab-pane fade active in" id="tab2_all">
+                                    </div>
+                                    <div class="tab-pane fade active in" id="tab2_pending">
+                                    </div>
+                                    <div class="tab-pane fade active in" id="tab2_dispatch">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 <script>
     (function () {
-        $('#input').on('blur', function (e) {
-            cosmos.ajax({
-                type: "get",
-                url: "/orgs/select2/repos",
-                data: {
-                    search: e.target.value||'1',
-                    type: 'public'
-                }
-            }).then(res => {
-                console.log(res);
-                console.log(464654);
-            });
-
-        })
+        $('select').select2();
+        window.test = new AI_Date();
+        test.init({
+            id: "#html",
+            selectDates: ["2018-06-01", "2018-06-02", "2018-06-15", "2018-06-20"],
+            callBack: function (res) {
+                console.log(res)
+            }
+        });
     })();
 </script>
 
